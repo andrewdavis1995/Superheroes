@@ -1,0 +1,50 @@
+﻿using System.Collections;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class ComicScript : MonoBehaviour
+{
+    public Vector3[] Positions;
+    public float[] Zooms;
+    private int _index = 0;
+    public Camera TheCamera;
+
+    private bool _transitioning;
+    private readonly float _transitionDuration = 1.2f;
+
+    // Use this for initialization
+    void Start()
+    {
+        StartCoroutine(Transition());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    IEnumerator Transition()
+    {
+        var t = 0.0f;
+        var startingPos = transform.position;
+        var startingZoom = new Vector2(TheCamera.orthographicSize, 0);
+        while (t < 1f)
+        {
+            t += Time.deltaTime * (Time.timeScale / _transitionDuration);
+
+            var destination = new Vector3(Positions[_index].x, Positions[_index].y, -5);
+            var destinationZoom = new Vector2(Zooms[_index], 0);
+
+            transform.position = Vector3.Lerp(startingPos, destination, t);
+            TheCamera.orthographicSize = Vector2.Lerp(startingZoom, destinationZoom, t).x;
+            yield return 0;
+        }
+        _transitioning = false;
+        yield return new WaitForSeconds(_index == 0 ? 1 : 3);
+        _index++;
+        if (_index < Positions.Length) { StartCoroutine(Transition()); }
+        else { SceneManager.LoadScene(0); }
+    }
+
+}
