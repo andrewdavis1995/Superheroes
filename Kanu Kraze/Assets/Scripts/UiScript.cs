@@ -29,7 +29,7 @@ public class UiScript : MonoBehaviour
         var txts = CitizenFreedPopup.GetComponentsInChildren<Text>();
         txts[2].text = citizenScript.Name;
         var gender = citizenScript.Male ? "he" : "she";
-        txts[3].text = "As a rewared for saving " + citizenScript.Name + ", " + gender + " has given you " + citizenScript.GiftName + "!";
+        txts[3].text = "As a reward for saving " + citizenScript.Name + ", " + gender + " has given you " + citizenScript.GiftName + "!";
         ActiveCitizen = citizenScript;
     }
 

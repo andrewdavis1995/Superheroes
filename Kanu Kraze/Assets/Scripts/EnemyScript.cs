@@ -6,7 +6,8 @@ public class EnemyScript : MonoBehaviour
     public bool Punching = false;
     public SpriteRenderer _renderer;
     public Animator _animator;
-    public int Health = 100;
+    public int Health;
+    public int Damage;
 
     private Collision2D _collision;
 
@@ -56,7 +57,7 @@ public class EnemyScript : MonoBehaviour
         {
             Punching = true;
             StartCoroutine(DoPunch());
-            StartCoroutine(_fightingPlayer.Hit(_collision));
+            StartCoroutine(_fightingPlayer.Hit(_collision, Damage));
         }
         else
         {

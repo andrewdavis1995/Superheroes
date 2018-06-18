@@ -479,9 +479,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public IEnumerator Hit(Collision2D collision)
+    public IEnumerator Hit(Collision2D collision, int damage)
     {
-        HealthLost(20);
+        HealthLost(damage);
         _stunned = true;
         var momentum = collision.relativeVelocity.x;
 
