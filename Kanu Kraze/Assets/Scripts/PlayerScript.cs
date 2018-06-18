@@ -30,6 +30,7 @@ public class PlayerScript : MonoBehaviour
     public bool Active;
     public bool Alive = true;
     public bool Complete = false;
+    public bool PunchRequired = false;
 
     public JohnScript JohnScript;
     public AndrewScript AndrewScript;
@@ -234,6 +235,7 @@ public class PlayerScript : MonoBehaviour
     IEnumerator DoPunch()
     {
         _punching = true;
+        PunchRequired = false;
         animators[1].enabled = false;
 
         for (var i = 0; i < InPunchRange.Count; i++)
@@ -472,17 +474,23 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.transform.tag == "Enemy")
         {
-            HealthLost(20);
-            _stunned = true;
-            collision.gameObject.GetComponent<PatrolScript>().Punch();
-            var momentum = collision.relativeVelocity.x;
-
-            int force = 1000;
-
-            Vector3 dir = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
-            dir = -dir.normalized;
-            GetComponent<Rigidbody2D>().AddForce(dir * force);
+            PunchRequired = true;
+            collision.gameObject.GetComponent<EnemyScript>().Punch(this, collision);
         }
+    }
+
+    public IEnumerator Hit(Collision2D collision)
+    {
+        HealthLost(20);
+        _stunned = true;
+        var momentum = collision.relativeVelocity.x;
+
+        int force = 1000;
+
+        Vector3 dir = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
+        dir = -dir.normalized;
+        GetComponent<Rigidbody2D>().AddForce(dir * force);
+        yield return 0;
     }
 
     IEnumerator SummonShip()

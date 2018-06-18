@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CitizenScript.cs" />
     <Compile Include="Assets\Scripts\ComicScript.cs" />
     <Compile Include="Assets\Scripts\ConstructionScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\FirewallScript.cs" />
     <Compile Include="Assets\Scripts\FollowScript.cs" />
     <Compile Include="Assets\Scripts\FraserScript.cs" />
