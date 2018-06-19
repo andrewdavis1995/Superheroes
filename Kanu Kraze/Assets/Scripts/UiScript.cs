@@ -7,7 +7,9 @@ public class UiScript : MonoBehaviour
 {
     public GameObject CitizenFreedPopup;
     public static CitizenScript ActiveCitizen;
-
+    public GameObject LoadScreen;
+    public Sprite[] Planets;
+    public Image LoadingPlanet;
 
     public void RestartLevel()
     {
@@ -16,7 +18,7 @@ public class UiScript : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     internal void ShowCitizen(CitizenScript citizenScript)
@@ -45,7 +47,10 @@ public class UiScript : MonoBehaviour
 
     public void LoadLevel(int i)
     {
-        const int offset = 1;
+        const int offset = 2;
+
+        LoadingPlanet.sprite = Planets[i];
+        LoadScreen.SetActive(true);
         SceneManager.LoadScene(offset + i);
     }
 }

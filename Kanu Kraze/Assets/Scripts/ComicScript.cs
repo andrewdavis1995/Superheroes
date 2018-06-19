@@ -44,7 +44,7 @@ public class ComicScript : MonoBehaviour
         yield return new WaitForSeconds(_index == 0 ? 1 : 3);
         _index++;
         if (_index < Positions.Length) { StartCoroutine(Transition()); }
-        else { SceneManager.LoadScene(0); }
+        else { SceneManager.LoadScene(1); }
     }
 
 }
