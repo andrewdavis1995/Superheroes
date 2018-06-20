@@ -1,68 +1,72 @@
 ﻿using UnityEngine;
 
-public class AndrewScript : MonoBehaviour
+namespace Assets.Scripts
 {
-    public PlayerScript Player;
-    private FirewallScript _inPanelBounds;
-    public SpriteRenderer Hacker;
-    public bool Hacking;
 
-    // Use this for initialization
-    void Start()
+    public class AndrewScript : MonoBehaviour
     {
+        public PlayerScript Player;
+        private FirewallScript _inPanelBounds;
+        public SpriteRenderer Hacker;
+        public bool Hacking;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
+        // Use this for initialization
+        void Start()
         {
-            if (_inPanelBounds && Player.Active)
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.H))
             {
-                _inPanelBounds.Activate(this);
+                if (_inPanelBounds && Player.Active)
+                {
+                    _inPanelBounds.Activate(this);
+                }
             }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Panel" && Player.Active)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            _inPanelBounds = null;
-            collision.GetComponentInParent<FirewallScript>().Instruction.SetActive(false);
-        }
-    }
-
-    internal void Hack()
-    {
-        Hacking = true;
-        foreach(var renderer in GetComponentsInChildren<SpriteRenderer>())
-        {
-            renderer.enabled = false;
-        }
-        Hacker.enabled = true;
-    }
-
-    internal void DoneHacking()
-    {
-        Hacking = false;
-        foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
-        {
-            renderer.enabled = true;
-        }
-        Hacker.enabled = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Panel" && Player.Active)
-        {
-            var firewall = collision.gameObject.GetComponentInParent<FirewallScript>();
-            if (!firewall.Pressed)
+            if (collision.transform.tag == "Panel" && Player.Active)
             {
-                _inPanelBounds = firewall;
-                firewall.Instruction.SetActive(true);
+                _inPanelBounds = null;
+                collision.GetComponentInParent<FirewallScript>().Instruction.SetActive(false);
+            }
+        }
+
+        internal void Hack()
+        {
+            Hacking = true;
+            foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
+            {
+                renderer.enabled = false;
+            }
+            Hacker.enabled = true;
+        }
+
+        internal void DoneHacking()
+        {
+            Hacking = false;
+            foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
+            {
+                renderer.enabled = true;
+            }
+            Hacker.enabled = false;
+        }
+
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.transform.tag == "Panel" && Player.Active)
+            {
+                var firewall = collision.gameObject.GetComponentInParent<FirewallScript>();
+                if (!firewall.Pressed)
+                {
+                    _inPanelBounds = firewall;
+                    firewall.Instruction.SetActive(true);
+                }
             }
         }
     }

@@ -1,45 +1,49 @@
 ﻿using UnityEngine;
 
-public class PatrolScript : MonoBehaviour
+namespace Assets.Scripts
 {
 
-    public EnemyScript Enemy;
-
-    public int MinX = 0;
-    public int MaxX = 0;
-
-    private bool _movingLeft = false;
-    public SpriteRenderer _renderer;
-
-    public float Speed = 1;
-
-    // Use this for initialization
-    void Start()
+    public class PatrolScript : MonoBehaviour
     {
-        _renderer = GetComponent<SpriteRenderer>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Enemy.Punching) return;
+        public EnemyScript Enemy;
 
-        if (_movingLeft)
+        public int MinX = 0;
+        public int MaxX = 0;
+
+        private bool _movingLeft = false;
+        public SpriteRenderer _renderer;
+
+        public float Speed = 1;
+
+        // Use this for initialization
+        void Start()
         {
-            transform.Translate(-Speed * new Vector3(2, 0, 0) * Time.deltaTime);
-            if (transform.position.x <= MinX)
-            {
-                _movingLeft = false;
-                _renderer.flipX = false;
-            }
+            _renderer = GetComponent<SpriteRenderer>();
         }
-        else
+
+        // Update is called once per frame
+        void Update()
         {
-            transform.Translate(Speed * new Vector3(2, 0, 0) * Time.deltaTime);
-            if (transform.position.x >= MaxX)
+            if (Enemy.Punching) return;
+
+            if (_movingLeft)
             {
-                _movingLeft = true;
-                _renderer.flipX = true;
+                transform.Translate(-Speed * new Vector3(2, 0, 0) * Time.deltaTime);
+                if (transform.position.x <= MinX)
+                {
+                    _movingLeft = false;
+                    _renderer.flipX = false;
+                }
+            }
+            else
+            {
+                transform.Translate(Speed * new Vector3(2, 0, 0) * Time.deltaTime);
+                if (transform.position.x >= MaxX)
+                {
+                    _movingLeft = true;
+                    _renderer.flipX = true;
+                }
             }
         }
     }

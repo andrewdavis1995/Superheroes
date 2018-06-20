@@ -3,168 +3,172 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShipScript : MonoBehaviour
+namespace Assets.Scripts
 {
-    public Transform BiFrost;
-    public SpriteRenderer BiFrostRenderer;
-    public Animator BiFrostAnimator;
-    private Dictionary<Vector3, GameObject> _pickUpPoints = new Dictionary<Vector3, GameObject>();
-    private bool _pickUpTime = false;
-    private int _speedMultiplier = 1;
 
-    private Vector3 BiFrostPos;
-
-    private readonly float _transitionDuration = 2.5f;
-
-    private Vector3 _targetPos;
-
-    bool _goingDown;
-    bool _goingUp;
-
-    public GameObject Citizen;
-
-    private float _flashTime = 0;
-
-    // Use this for initialization
-    void Start()
+    public class ShipScript : MonoBehaviour
     {
-        _targetPos = transform.position;
-        BiFrostPos = BiFrost.position;
-    }
+        public Transform BiFrost;
+        public SpriteRenderer BiFrostRenderer;
+        public Animator BiFrostAnimator;
+        private Dictionary<Vector3, GameObject> _pickUpPoints = new Dictionary<Vector3, GameObject>();
+        private bool _pickUpTime = false;
+        private int _speedMultiplier = 1;
 
-    IEnumerator Retract()
-    {
-        yield return new WaitForSeconds(1.25f);
+        private Vector3 BiFrostPos;
 
-        // move passengers up to make space
-        var passengers = gameObject.GetComponentsInChildren<Transform>().Where(c => c.tag == "Citizen" || c.tag == "Player");
-        foreach (var p in passengers)
+        private readonly float _transitionDuration = 2.5f;
+
+        private Vector3 _targetPos;
+
+        bool _goingDown;
+        bool _goingUp;
+
+        public GameObject Citizen;
+
+        private float _flashTime = 0;
+
+        // Use this for initialization
+        void Start()
         {
-            p.Translate(new Vector3(-1f, 0, 0));
+            _targetPos = transform.position;
+            BiFrostPos = BiFrost.position;
         }
 
-        _goingUp = true;
-        if (Citizen)
+        IEnumerator Retract()
         {
-            var rigBod = Citizen.GetComponent<Rigidbody2D>();
-            if (rigBod) { rigBod.isKinematic = true; }
-        }
-    }
+            yield return new WaitForSeconds(1.25f);
 
-    public void Activate()
-    {
-        BiFrostAnimator.enabled = true;
-        _goingDown = true;
-        _goingUp = false;
-    }
-
-    public void Pickup()
-    {
-        _pickUpTime = true;
-        //_targetPos = _pickUpPoints.FirstOrDefault();
-        _speedMultiplier = 2;
-        Citizen = _pickUpPoints.FirstOrDefault().Value;
-        Activate(_pickUpPoints.FirstOrDefault().Key, true);
-        _pickUpPoints.Remove(_pickUpPoints.FirstOrDefault().Key);
-    }
-
-    public void NewCollectionPoint(Vector3 position, GameObject player)
-    {
-        _pickUpPoints.Add(position, player);
-        _pickUpPoints = _pickUpPoints.OrderBy(p => p.Key.x).ToDictionary(p => p.Key, p => p.Value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _flashTime += Time.deltaTime;
-
-        if (_goingDown)
-        {
-            BiFrostRenderer.transform.localScale += new Vector3(0, .9f, 0) * Time.deltaTime * _speedMultiplier;
-            BiFrost.transform.localPosition -= new Vector3(0, 2.2f, 0) * Time.deltaTime * _speedMultiplier;
-            if (BiFrostRenderer.transform.localScale.y > 1.8f)
+            // move passengers up to make space
+            var passengers = gameObject.GetComponentsInChildren<Transform>().Where(c => c.tag == "Citizen" || c.tag == "Player");
+            foreach (var p in passengers)
             {
-                _goingDown = false;
-                StartCoroutine(Retract());
+                p.Translate(new Vector3(-1f, 0, 0));
             }
-        }
 
-        if (_goingUp)
-        {
-            Ascend();
-        }
-    }
-
-    void Ascend()
-    {
-        BiFrostRenderer.transform.localScale -= new Vector3(0, .9f, 0) * Time.deltaTime * _speedMultiplier;
-        BiFrost.transform.localPosition += new Vector3(0, 2.2f, 0) * Time.deltaTime * _speedMultiplier;
-        if (Citizen)
-            Citizen.transform.Translate(new Vector3(0, 3.5f, 0) * Time.deltaTime * _speedMultiplier);
-
-        if (BiFrostRenderer.transform.localScale.y < 0f)
-        {
-            _goingUp = false;
-            BiFrostAnimator.enabled = false;
-
+            _goingUp = true;
             if (Citizen)
             {
-                Citizen.transform.parent = transform;
+                var rigBod = Citizen.GetComponent<Rigidbody2D>();
+                if (rigBod) { rigBod.isKinematic = true; }
             }
-            if (!_pickUpTime || _pickUpPoints.Count == 0)
+        }
+
+        public void Activate()
+        {
+            BiFrostAnimator.enabled = true;
+            _goingDown = true;
+            _goingUp = false;
+        }
+
+        public void Pickup()
+        {
+            _pickUpTime = true;
+            //_targetPos = _pickUpPoints.FirstOrDefault();
+            _speedMultiplier = 2;
+            Citizen = _pickUpPoints.FirstOrDefault().Value;
+            Activate(_pickUpPoints.FirstOrDefault().Key, true);
+            _pickUpPoints.Remove(_pickUpPoints.FirstOrDefault().Key);
+        }
+
+        public void NewCollectionPoint(Vector3 position, GameObject player)
+        {
+            _pickUpPoints.Add(position, player);
+            _pickUpPoints = _pickUpPoints.OrderBy(p => p.Key.x).ToDictionary(p => p.Key, p => p.Value);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            _flashTime += Time.deltaTime;
+
+            if (_goingDown)
             {
-                Activate(transform.position + new Vector3(80, 15), false);
+                BiFrostRenderer.transform.localScale += new Vector3(0, .9f, 0) * Time.deltaTime * _speedMultiplier;
+                BiFrost.transform.localPosition -= new Vector3(0, 2.2f, 0) * Time.deltaTime * _speedMultiplier;
+                if (BiFrostRenderer.transform.localScale.y > 1.8f)
+                {
+                    _goingDown = false;
+                    StartCoroutine(Retract());
+                }
             }
-            else
+
+            if (_goingUp)
             {
-                Pickup();
+                Ascend();
             }
         }
-    }
 
-    internal void Activate(Vector3 target, bool activate)
-    {
-        if (activate && !_pickUpTime)
+        void Ascend()
         {
-            transform.position = target - new Vector3(75, -15);
-            _speedMultiplier = 1;
-        }
-        _targetPos = target;
-        StartCoroutine(Transition(activate));
-    }
+            BiFrostRenderer.transform.localScale -= new Vector3(0, .9f, 0) * Time.deltaTime * _speedMultiplier;
+            BiFrost.transform.localPosition += new Vector3(0, 2.2f, 0) * Time.deltaTime * _speedMultiplier;
+            if (Citizen)
+                Citizen.transform.Translate(new Vector3(0, 3.5f, 0) * Time.deltaTime * _speedMultiplier);
 
-    IEnumerator Transition(bool activate)
-    {
-        if (!activate)
-            yield return new WaitForSeconds(1.2f);
+            if (BiFrostRenderer.transform.localScale.y < 0f)
+            {
+                _goingUp = false;
+                BiFrostAnimator.enabled = false;
 
-        var t = 0.0f;
-        var startingPos = transform.position;
-
-        var duration = _transitionDuration / _speedMultiplier;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime * (Time.timeScale / duration);
-
-            var destination = new Vector3(_targetPos.x, _targetPos.y, -40);
-
-            transform.position = Vector3.Lerp(startingPos, destination, t);
-            yield return 0;
+                if (Citizen)
+                {
+                    Citizen.transform.parent = transform;
+                }
+                if (!_pickUpTime || _pickUpPoints.Count == 0)
+                {
+                    Activate(transform.position + new Vector3(80, 15), false);
+                }
+                else
+                {
+                    Pickup();
+                }
+            }
         }
 
-        if (activate)
+        internal void Activate(Vector3 target, bool activate)
         {
-            yield return new WaitForSeconds(1.2f);
-            Activate();
-            _targetPos.x = -9999;
+            if (activate && !_pickUpTime)
+            {
+                transform.position = target - new Vector3(75, -15);
+                _speedMultiplier = 1;
+            }
+            _targetPos = target;
+            StartCoroutine(Transition(activate));
         }
 
-        if (_pickUpTime && _pickUpPoints.Count == 0 && _targetPos.x != -9999)
+        IEnumerator Transition(bool activate)
         {
-            GameObject.Find("GameController").GetComponent<GameControllerScript>().LevelCompleted();
-        }
+            if (!activate)
+                yield return new WaitForSeconds(1.2f);
 
+            var t = 0.0f;
+            var startingPos = transform.position;
+
+            var duration = _transitionDuration / _speedMultiplier;
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime * (Time.timeScale / duration);
+
+                var destination = new Vector3(_targetPos.x, _targetPos.y, -40);
+
+                transform.position = Vector3.Lerp(startingPos, destination, t);
+                yield return 0;
+            }
+
+            if (activate)
+            {
+                yield return new WaitForSeconds(1.2f);
+                Activate();
+                _targetPos.x = -9999;
+            }
+
+            if (_pickUpTime && _pickUpPoints.Count == 0 && _targetPos.x != -9999)
+            {
+                GameObject.Find("GameController").GetComponent<GameControllerScript>().LevelCompleted();
+            }
+
+        }
     }
 }

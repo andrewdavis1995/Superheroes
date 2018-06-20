@@ -73,8 +73,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AndrewScript.cs" />
+    <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\CitizenScript.cs" />
+    <Compile Include="Assets\Scripts\ComicScript.cs" />
+    <Compile Include="Assets\Scripts\ConstructionScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScript.cs" />
+    <Compile Include="Assets\Scripts\FirewallScript.cs" />
+    <Compile Include="Assets\Scripts\FollowScript.cs" />
+    <Compile Include="Assets\Scripts\FraserScript.cs" />
+    <Compile Include="Assets\Scripts\GameControllerScript.cs" />
     <Compile Include="Assets\Scripts\JohnScript.cs" />
+    <Compile Include="Assets\Scripts\MatthewScript.cs" />
+    <Compile Include="Assets\Scripts\PatrolScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\ShipScript.cs" />
+    <Compile Include="Assets\Scripts\StalagtiteScript.cs" />
+    <Compile Include="Assets\Scripts\UiScript.cs" />
+    <Compile Include="Assets\PotionScript.cs" />
+    <Compile Include="Assets\RequiredIconFlickerScript.cs" />
+    <Compile Include="Assets\Scripts\Platform\BasePlatformScript.cs" />
+    <Compile Include="Assets\Scripts\Platform\ButtonScript.cs" />
+    <Compile Include="Assets\Scripts\Platform\HorizontalMovingPlatform.cs" />
+    <Compile Include="Assets\Scripts\Platform\VerticalMovingPlatform.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
