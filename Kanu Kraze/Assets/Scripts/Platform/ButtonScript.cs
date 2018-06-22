@@ -12,8 +12,13 @@ namespace Assets.Scripts.Platform
         private const float CAMERA_ZOOM = 6.12F;
         private float _waitState = 0f;
 
-        public bool Pressed = false;
-        
+        public bool Pressed { get; set; }
+
+        private void Start()
+        {
+            Pressed = false;
+        }
+
         // Update is called once per frame
         void Update()
         {

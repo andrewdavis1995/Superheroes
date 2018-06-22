@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>Kanu Kraze</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>ce4ca8b5-fc68-88ad-11c2-337dfc552dc7</ProjectGuid>
+  <FullPath>C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Kanu Kraze.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\.sonarqube\out\0\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePath">C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.RoslynCA.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPath">C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\.sonarqube\out\0</Property>
+  </AnalysisSettings>
+  <Configuration>Debug</Configuration>
+  <Platform>AnyCPU</Platform>
+</ProjectInfo>

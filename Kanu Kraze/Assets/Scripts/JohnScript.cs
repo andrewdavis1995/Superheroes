@@ -7,8 +7,8 @@ namespace Assets.Scripts
     public class JohnScript : MonoBehaviour
     {
 
-        public bool Climbing = false;
-        public bool InWallBounds = false;
+        public bool Climbing { get; private set; }
+        public bool InWallBounds { get; private set; }
 
         public GameObject Climber;
         public PlayerScript Player;
@@ -22,6 +22,12 @@ namespace Assets.Scripts
                 renderer.enabled = !state;
             }
             Climber.SetActive(state);
+        }
+
+        private void Start()
+        {
+            Climbing = false;
+            InWallBounds = false;
         }
 
         // Update is called once per frame
@@ -38,13 +44,10 @@ namespace Assets.Scripts
                 }
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && Climbing)
             {
-                if (Climbing)
-                {
-                    transform.Translate(new Vector3(0, -Time.deltaTime, 0));
-                    ClimberAnim.enabled = true;
-                }
+                transform.Translate(new Vector3(0, -Time.deltaTime, 0));
+                ClimberAnim.enabled = true;
             }
 
             if (InWallBounds)
@@ -52,7 +55,7 @@ namespace Assets.Scripts
                 CheckGrounded();
             }
 
-            if (!Player.onGround && InWallBounds)
+            if (!Player.OnGround && InWallBounds)
             {
                 if (Player.RigidBody.velocity.y < -0.5f)
                 {
@@ -60,9 +63,6 @@ namespace Assets.Scripts
                     Player.RigidBody.velocity = new Vector3(0, 0, 0);
                     Climbing = true;
                     ToggleClimber(true);
-                }
-                else
-                {
                 }
             }
             else
@@ -75,7 +75,7 @@ namespace Assets.Scripts
 
         void CheckGrounded()
         {
-            if (Player.onGround)
+            if (Player.OnGround)
             {
                 var touching = Physics2D.RaycastAll(Player.LegCollider.position, new Vector2(0, -1), 1.4f + Player.DistToGround);
 
@@ -93,7 +93,8 @@ namespace Assets.Scripts
 
                 if (!vari)
                 {
-                    Player.onGround = false;
+                    Player.OnGround = false;
+                    Player.Renderers[1].sprite = Player.HeadImages[1];
                 }
             }
         }

@@ -15,6 +15,7 @@ namespace Assets.Scripts
         public Image StatusImage;
         public Image HealthImage;
         public Sprite[] StatusImages;   // inactive, active, dead
+        public Sprite[] HeadImages;   // inactive, active, dead
 
         // components
         public SpriteRenderer[] Renderers;
@@ -25,16 +26,18 @@ namespace Assets.Scripts
         public Transform LegCollider;
 
         // status
-        public static bool MovingLeft;
-        public bool onGround;
-        public bool _stunned = true;
-        public bool Camera = true;
 
-        public bool Active;
-        public bool Alive = true;
-        public bool Complete = false;
-        public bool PunchRequired = false;
+        public bool OnGround { get; set; }
+        public bool Stunned { get; private set; }
+        public bool Camera { get; private set; }
 
+        public bool Active { get; private set; }
+        public bool Alive { get; private set; }
+        public bool Complete { get; private set; }
+        public bool PunchRequired { get; set; }
+        public bool Walking { get; set; }
+
+        // player scripts
         public JohnScript JohnScript;
         public AndrewScript AndrewScript;
         public FraserScript FraserScript;
@@ -47,8 +50,6 @@ namespace Assets.Scripts
 
         public Sprite[] PunchImages;
 
-        public bool Walking = true;
-
         private readonly List<GameObject> InPunchRange = new List<GameObject>();
         private GameObject ActiveButton;
         private float Health = 100;
@@ -60,6 +61,14 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
+            // bool init
+            Stunned = true;
+            Alive = true;
+            Complete = false;
+            PunchRequired = false;
+            Camera = true;
+            Walking = true;
+
             RigidBody = transform.GetComponent<Rigidbody2D>();
             rotation = transform.rotation;
             animators = transform.GetComponentsInChildren<Animator>();
@@ -132,7 +141,7 @@ namespace Assets.Scripts
         {
             transform.rotation = rotation;
 
-            if (Active && !_stunned)
+            if (Active && !Stunned)
             {
                 if (transform.position.x < LEFT_LIMIT)
                 {
@@ -165,8 +174,6 @@ namespace Assets.Scripts
                         {
                             r.flipX = false;
                         }
-
-                        MovingLeft = false;
                     }
                     else if (Input.GetKey(KeyCode.A))
                     {
@@ -175,20 +182,15 @@ namespace Assets.Scripts
                         {
                             r.flipX = true;
                         }
-
-                        MovingLeft = true;
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) && OnGround)
                 {
-                    if (onGround)
-                    {
-                        Jump(1 * dampener);
-                    }
+                    Jump(1 * dampener);
                 }
 
-                if (!onGround)
+                if (!OnGround)
                 {
                     StartCoroutine(JumpAnim());
                 }
@@ -226,10 +228,9 @@ namespace Assets.Scripts
 
         private void HandlePunch()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !_punching)
             {
-                if (!_punching)
-                    StartCoroutine(DoPunch());
+                StartCoroutine(DoPunch());
             }
         }
 
@@ -282,17 +283,17 @@ namespace Assets.Scripts
         {
             CheckGrounded();
 
-            // TODO Jump animation
-            if (onGround)
+            if (OnGround)
             {
                 RigidBody.AddForce(new Vector2(0, JUMP_SPEED * scale));
-                onGround = false;
+                OnGround = false;
+                Renderers[1].sprite = HeadImages[1];
             }
         }
 
         void CheckGrounded()
         {
-            if (onGround)
+            if (OnGround)
             {
                 var touching = Physics2D.RaycastAll(LegCollider.position, new Vector2(0, -1), 1.4f + DistToGround);
 
@@ -310,7 +311,8 @@ namespace Assets.Scripts
 
                 if (!vari)
                 {
-                    onGround = false;
+                    OnGround = false;
+                    Renderers[1].sprite = HeadImages[1];
                 }
             }
         }
@@ -448,8 +450,9 @@ namespace Assets.Scripts
 
             if (collision.gameObject.tag.ToLower().Contains("platform") && vel.y > 0) //  && vel.y < 0
             {
-                onGround = true;
-                _stunned = false;
+                Renderers[1].sprite = HeadImages[0];
+                OnGround = true;
+                Stunned = false;
                 if (!collision.gameObject.name.ToLower().Contains("temp"))
                     transform.parent = collision.transform;
             }
@@ -478,7 +481,7 @@ namespace Assets.Scripts
         public IEnumerator Hit(Collision2D collision, int damage)
         {
             HealthLost(damage);
-            _stunned = true;
+            Stunned = true;
 
             int force = 1000;
 

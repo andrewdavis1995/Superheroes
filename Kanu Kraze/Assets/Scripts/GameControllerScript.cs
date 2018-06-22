@@ -12,13 +12,14 @@ namespace Assets.Scripts
         public CameraScript CameraScript;
 
         public List<PlayerScript> Players = new List<PlayerScript>();
-        public int SelectedPlayer = 0;
+        public int SelectedPlayer { get; private set; }
         public GameObject LevelCompletePopup;
         public GameObject LevelFailedPopup;
 
         // Use this for initialization
         void Start()
         {
+            SelectedPlayer = 0;
             if (Players.Count > 0)
             {
                 Players[0].Activate();

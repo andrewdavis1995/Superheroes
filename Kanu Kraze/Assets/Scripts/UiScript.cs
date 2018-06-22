@@ -9,7 +9,7 @@ namespace Assets.Scripts
     public class UiScript : MonoBehaviour
     {
         public GameObject CitizenFreedPopup;
-        public static CitizenScript ActiveCitizen;
+        private static CitizenScript _activeCitizen;
         public GameObject LoadScreen;
         public Sprite[] Planets;
         public Image LoadingPlanet;
@@ -35,17 +35,17 @@ namespace Assets.Scripts
             txts[2].text = citizenScript.Name;
             var gender = citizenScript.Male ? "he" : "she";
             txts[3].text = "As a reward for saving " + citizenScript.Name + ", " + gender + " has given you " + citizenScript.GiftName + "!";
-            ActiveCitizen = citizenScript;
+            _activeCitizen = citizenScript;
         }
 
         public void ResumeAfterPlayer()
         {
-            if (ActiveCitizen)
+            if (_activeCitizen)
             {
                 CitizenFreedPopup.SetActive(false);
-                ActiveCitizen.ShipPickup();
+                _activeCitizen.ShipPickup();
             }
-            ActiveCitizen = null;
+            _activeCitizen = null;
         }
 
         public void LoadLevel(int i)

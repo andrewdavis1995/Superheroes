@@ -15,8 +15,6 @@ namespace Assets.Scripts
         private bool _pickUpTime = false;
         private int _speedMultiplier = 1;
 
-        private Vector3 BiFrostPos;
-
         private readonly float _transitionDuration = 2.5f;
 
         private Vector3 _targetPos;
@@ -32,7 +30,6 @@ namespace Assets.Scripts
         void Start()
         {
             _targetPos = transform.position;
-            BiFrostPos = BiFrost.position;
         }
 
         IEnumerator Retract()

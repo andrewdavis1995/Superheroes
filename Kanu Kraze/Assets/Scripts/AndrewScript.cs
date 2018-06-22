@@ -8,7 +8,7 @@ namespace Assets.Scripts
         public PlayerScript Player;
         private FirewallScript _inPanelBounds;
         public SpriteRenderer Hacker;
-        public bool Hacking;
+        public bool Hacking { get; private set; }
 
         // Update is called once per frame
         void Update()

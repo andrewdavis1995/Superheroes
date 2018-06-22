@@ -12,11 +12,12 @@ namespace Assets.Scripts
         private readonly float _transitionDuration = .65f;
         private Transform _ship;
         public Camera Camera;
-        public static bool Zooming = false;
+        public static bool Zooming { get; set; }
 
         // Use this for initialization
         void Start()
         {
+            Zooming = false;
             _ship = GameObject.Find("Ship").transform;
         }
 

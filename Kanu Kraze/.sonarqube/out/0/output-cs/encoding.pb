@@ -1,0 +1,24 @@
+h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\AndrewScript.csutf-8h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\CameraScript.csutf-8i
+`C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\CitizenScript.csutf-8g
+^C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\ComicScript.csutf-8n
+eC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\ConstructionScript.csutf-8g
+^C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\EnemyScript.csutf-8j
+aC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\FirewallScript.csutf-8h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\FollowScript.csutf-8h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\FraserScript.csutf-8p
+gC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\GameControllerScript.csutf-8f
+]C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\JohnScript.csutf-8i
+`C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\MatthewScript.csutf-8h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\PatrolScript.csutf-8h
+_C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\PlayerScript.csutf-8f
+]C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\ShipScript.csutf-8l
+cC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\StalagtiteScript.csutf-8d
+[C:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\UiScript.csutf-8`
+WC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\PotionScript.csutf-8m
+dC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\RequiredIconFlickerScript.csutf-8w
+nC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\Platform\BasePlatformScript.csutf-8q
+hC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\Platform\ButtonScript.csutf-8}
+tC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\Platform\HorizontalMovingPlatform.csutf-8{
+rC:\Users\asuth\Documents\Untitled-Superhero-Game-Repo\Kanu Kraze\Assets\Scripts\Platform\VerticalMovingPlatform.csutf-8

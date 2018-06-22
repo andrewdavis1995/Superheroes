@@ -1,0 +1,7 @@
+organization=andrewdavis1995-github
+projectKey=Super
+serverUrl=https://sonarcloud.io
+serverVersion=7.3.0.13459
+dashboardUrl=https://sonarcloud.io/dashboard?id=Super
+ceTaskId=AWQoa1f0HlEhtnAoG9Cf
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWQoa1f0HlEhtnAoG9Cf

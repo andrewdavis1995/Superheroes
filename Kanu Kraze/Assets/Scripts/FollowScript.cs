@@ -43,7 +43,7 @@ namespace Assets.Scripts
             if (_timeCount > _interval)
             {
                 _timeCount = 0;
-                if (_target.onGround || (_target.JohnScript != null && _target.JohnScript.Climbing))
+                if (_target.OnGround || (_target.JohnScript != null && _target.JohnScript.Climbing))
                 {
                     int skipFactor = UnityEngine.Random.Range(0, 7);
                     if (skipFactor != 0) // randomise

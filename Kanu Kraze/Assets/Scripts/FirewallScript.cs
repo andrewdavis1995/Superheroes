@@ -7,7 +7,7 @@ namespace Assets.Scripts
     public class FirewallScript : MonoBehaviour
     {
         public BoxCollider2D WallCollider;
-        public bool Pressed;
+        public bool Pressed { get; private set; }
         public GameObject Instruction;
         public Sprite[] TvImages;
         public SpriteRenderer Tv;

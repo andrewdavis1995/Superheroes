@@ -8,12 +8,17 @@ namespace Assets.Scripts
     {
         public PlayerScript Player;
         private int _holdingLegos = 0;
-        public bool Building = false;
+        public bool Building { get; set; }
         public GameObject Builder;
         private ConstructionScript _inBuildZone;
         public Text BricksText;
         public Image BricksImage;
-        
+
+        private void Start()
+        {
+            Building = false;
+        }
+
         public void Die()
         {
             BricksText.gameObject.SetActive(false);

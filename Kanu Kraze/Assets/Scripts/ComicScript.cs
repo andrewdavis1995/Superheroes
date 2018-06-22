@@ -13,7 +13,6 @@ namespace Assets.Scripts
         private int _index = 0;
         public Camera TheCamera;
 
-        private bool _transitioning;
         private readonly float _transitionDuration = 1.2f;
 
         // Use this for initialization
@@ -38,7 +37,6 @@ namespace Assets.Scripts
                 TheCamera.orthographicSize = Vector2.Lerp(startingZoom, destinationZoom, t).x;
                 yield return 0;
             }
-            _transitioning = false;
             yield return new WaitForSeconds(_index == 0 ? 1 : 3);
             _index++;
             if (_index < Positions.Length) { StartCoroutine(Transition()); }
