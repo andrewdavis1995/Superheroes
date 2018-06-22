@@ -17,19 +17,7 @@ namespace Assets.Scripts
         public bool Male;
         public string GiftName;
         public Image SummaryView;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        
         public bool Hit(int hitPoints)
         {
             Health -= hitPoints;

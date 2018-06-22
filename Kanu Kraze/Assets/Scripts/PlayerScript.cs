@@ -138,8 +138,6 @@ namespace Assets.Scripts
                     transform.position = new Vector3(LEFT_LIMIT, transform.position.y, transform.position.z);
                 }
 
-                var currPos = transform.position;
-
                 var dampener = 1f;
 
                 if (JohnScript != null && JohnScript.Climbing)
@@ -277,8 +275,6 @@ namespace Assets.Scripts
         private IEnumerator JumpAnim()
         {
             yield return new WaitForEndOfFrame();
-            //animators[0].SetTrigger("Jump");
-            //animators[2].SetTrigger("Jump");
         }
 
         public void Jump(float scale)
@@ -289,8 +285,6 @@ namespace Assets.Scripts
             if (onGround)
             {
                 RigidBody.AddForce(new Vector2(0, JUMP_SPEED * scale));
-                //animators[0].SetTrigger("Jump");
-                //animators[1].SetTrigger("Jump");
                 onGround = false;
             }
         }
@@ -306,7 +300,6 @@ namespace Assets.Scripts
                 {
                     foreach (var t in touching)
                     {
-                        //if ((t.distance - distToGround) < 0.70055f)
                         if (t.collider.name != "legs")
                         {
                             vari = true;
@@ -485,7 +478,6 @@ namespace Assets.Scripts
         {
             HealthLost(damage);
             _stunned = true;
-            var momentum = collision.relativeVelocity.x;
 
             int force = 1000;
 

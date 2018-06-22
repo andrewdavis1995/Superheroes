@@ -9,12 +9,6 @@ namespace Assets.Scripts
         public PlayerScript Player { get; internal set; }
         public int HealthBenefits;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void Update()
         {

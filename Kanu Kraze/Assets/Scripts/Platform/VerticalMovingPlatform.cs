@@ -7,12 +7,6 @@ public class VerticalMovingPlatform : BasePlatformScript
 
     bool MovingUp = true;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -13,13 +13,7 @@ namespace Assets.Scripts
         public SpriteRenderer Tv;
         public Animator TvAnimator;
         public RequiredIconFlickerScript FlickerIcon;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
+        
         public void Activate(AndrewScript andrew)
         {
             FlickerIcon.gameObject.SetActive(false);

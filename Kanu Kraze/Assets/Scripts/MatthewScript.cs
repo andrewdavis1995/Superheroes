@@ -15,13 +15,7 @@ namespace Assets.Scripts
 
         public Transform Potion;
         public Sprite[] PotionImages;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
+        
         // Update is called once per frame
         void Update()
         {

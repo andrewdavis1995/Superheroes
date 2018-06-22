@@ -13,13 +13,7 @@ namespace Assets.Scripts
         private ConstructionScript _inBuildZone;
         public Text BricksText;
         public Image BricksImage;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
+        
         public void Die()
         {
             BricksText.gameObject.SetActive(false);

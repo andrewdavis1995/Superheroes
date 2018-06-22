@@ -26,12 +26,6 @@ namespace Assets.Scripts
             _fraserScript = fraser.GetComponent<FraserScript>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public bool BuildTriggered(int availableBlocks)
         {
             if (availableBlocks >= BlocksRequired)

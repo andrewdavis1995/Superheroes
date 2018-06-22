@@ -21,12 +21,7 @@ namespace Assets.Scripts
         {
             StartCoroutine(Transition());
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
+        
         IEnumerator Transition()
         {
             var t = 0.0f;

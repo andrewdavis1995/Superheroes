@@ -15,13 +15,6 @@ namespace Assets.Scripts
 
         public Animator ClimberAnim;
 
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         void ToggleClimber(bool state)
         {
             foreach (var renderer in Player.Renderers)
@@ -91,7 +84,6 @@ namespace Assets.Scripts
                 {
                     foreach (var t in touching)
                     {
-                        //if ((t.distance - distToGround) < 0.70055f)
                         if (t.collider.name != "legs")
                         {
                             vari = true;

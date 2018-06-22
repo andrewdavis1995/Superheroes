@@ -14,13 +14,7 @@ namespace Assets.Scripts
         private float _waitState = 0f;
 
         public bool Pressed = false;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
+        
         // Update is called once per frame
         void Update()
         {

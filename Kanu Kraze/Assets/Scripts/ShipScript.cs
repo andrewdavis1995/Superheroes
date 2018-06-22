@@ -64,7 +64,6 @@ namespace Assets.Scripts
         public void Pickup()
         {
             _pickUpTime = true;
-            //_targetPos = _pickUpPoints.FirstOrDefault();
             _speedMultiplier = 2;
             Citizen = _pickUpPoints.FirstOrDefault().Value;
             Activate(_pickUpPoints.FirstOrDefault().Key, true);

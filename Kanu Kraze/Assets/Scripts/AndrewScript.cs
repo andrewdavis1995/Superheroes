@@ -10,12 +10,6 @@ namespace Assets.Scripts
         public SpriteRenderer Hacker;
         public bool Hacking;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void Update()
         {

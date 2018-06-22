@@ -44,17 +44,5 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(2);
             Destroy(gameObject);
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
