@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class BasePlatformScript : MonoBehaviour
+namespace Assets.Scripts.Platform
 {
-    public bool Active = false;
-    public GameObject JumpBlocker;
-    public int Speed = 0;
-
-    public void Activate()
+    public class BasePlatformScript : MonoBehaviour
     {
-        Active = true;
-        // disable blockers?
+        public bool Active = false;
+        public GameObject JumpBlocker;
+        public int Speed = 0;
+
+        public void Activate()
+        {
+            Active = true;
+            // disable blockers?
+        }
     }
 }

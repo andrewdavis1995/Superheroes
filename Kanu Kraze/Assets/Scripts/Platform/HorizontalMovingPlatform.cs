@@ -1,33 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HorizontalMovingPlatform : BasePlatformScript
+namespace Assets.Scripts.Platform
 {
-    public int LeftX = 0;
-    public int RightX = 0;
-
-    bool MovingRight = false;
-
-    // Update is called once per frame
-    void Update()
+    public class HorizontalMovingPlatform : BasePlatformScript
     {
-        if (Active)
+        public int LeftX = 0;
+        public int RightX = 0;
+
+        bool MovingRight = false;
+
+        // Update is called once per frame
+        void Update()
         {
-            if (MovingRight)
+            if (Active)
             {
-                transform.Translate(new Vector3(Speed * Time.deltaTime, 0));
-                if(transform.position.x > RightX)
+                if (MovingRight)
                 {
-                    MovingRight = false;
+                    transform.Translate(new Vector3(Speed * Time.deltaTime, 0));
+                    if (transform.position.x > RightX)
+                    {
+                        MovingRight = false;
+                    }
                 }
-            }
-            else
-            {
-                transform.Translate(new Vector3(-Speed * Time.deltaTime, 0));
-                if (transform.position.x < LeftX)
+                else
                 {
-                    MovingRight = true;
+                    transform.Translate(new Vector3(-Speed * Time.deltaTime, 0));
+                    if (transform.position.x < LeftX)
+                    {
+                        MovingRight = true;
+                    }
                 }
             }
         }

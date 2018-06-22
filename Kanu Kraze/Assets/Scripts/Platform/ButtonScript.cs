@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Platform
 {
-
     public class ButtonScript : MonoBehaviour
     {
         public BasePlatformScript RelatedPlatform;

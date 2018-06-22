@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Assets.Scripts.Platform;
 
 namespace Assets.Scripts
 {

@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
-public class VerticalMovingPlatform : BasePlatformScript
+namespace Assets.Scripts.Platform
 {
-    public int TopY = 0;
-    public int BottomY = 0;
-
-    bool MovingUp = true;
-
-    // Update is called once per frame
-    void Update()
+    public class VerticalMovingPlatform : BasePlatformScript
     {
-        if (Active)
+        public int TopY = 0;
+        public int BottomY = 0;
+
+        bool MovingUp = true;
+
+        // Update is called once per frame
+        void Update()
         {
-            if (MovingUp)
+            if (Active)
             {
-                transform.Translate(new Vector3(0, Speed * Time.deltaTime));
-                if (transform.position.y > TopY)
+                if (MovingUp)
                 {
-                    MovingUp = false;
+                    transform.Translate(new Vector3(0, Speed * Time.deltaTime));
+                    if (transform.position.y > TopY)
+                    {
+                        MovingUp = false;
+                    }
                 }
-            }
-            else
-            {
-                transform.Translate(new Vector3(0, -Speed * Time.deltaTime));
-                if (transform.position.y < BottomY)
+                else
                 {
-                    MovingUp = true;
+                    transform.Translate(new Vector3(0, -Speed * Time.deltaTime));
+                    if (transform.position.y < BottomY)
+                    {
+                        MovingUp = true;
+                    }
                 }
             }
         }
