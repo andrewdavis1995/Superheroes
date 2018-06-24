@@ -22,7 +22,7 @@ namespace Assets.Scripts
 
         Quaternion rotation;
 
-        // Use this for initialization
+        
         void Start()
         {
             rotation = transform.rotation;
@@ -86,7 +86,7 @@ namespace Assets.Scripts
             _collision = null;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             transform.rotation = rotation;

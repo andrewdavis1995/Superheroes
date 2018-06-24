@@ -26,7 +26,7 @@ namespace Assets.Scripts
 
         private float _flashTime = 0;
 
-        // Use this for initialization
+        
         void Start()
         {
             _targetPos = transform.position;
@@ -73,7 +73,6 @@ namespace Assets.Scripts
             _pickUpPoints = _pickUpPoints.OrderBy(p => p.Key.x).ToDictionary(p => p.Key, p => p.Value);
         }
 
-        // Update is called once per frame
         void Update()
         {
             _flashTime += Time.deltaTime;

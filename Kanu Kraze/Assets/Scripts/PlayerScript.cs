@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Assets.Scripts.Platform;
+using System;
 
 namespace Assets.Scripts
 {
@@ -58,7 +59,7 @@ namespace Assets.Scripts
         public float DistToGround;
 
 
-        // Use this for initialization
+        
         void Start()
         {
             // bool init
@@ -123,7 +124,6 @@ namespace Assets.Scripts
         {
             // disable following
             FollowScript.Reset();
-            // set follow target to -9999
             Active = true;
             StatusImage.sprite = StatusImages[1];
         }
@@ -136,7 +136,6 @@ namespace Assets.Scripts
             animators[0].SetTrigger("Stop");
         }
 
-        // Update is called once per frame
         void Update()
         {
             transform.rotation = rotation;
@@ -379,13 +378,8 @@ namespace Assets.Scripts
             }
         }
 
-        public void Die()
+        bool CheckForGameOver()
         {
-            Alive = false;
-            Health = 0;
-            HealthImage.fillAmount = 0;
-
-            bool playersLeft = true;
             if (!Controller.Players.Any(p => p.Alive))
             {
                 // UH OH! Game over
@@ -402,11 +396,41 @@ namespace Assets.Scripts
                     GameObject.Find("GameController").GetComponent<GameControllerScript>().LevelFailedPopup.SetActive(true);
                 }
 
-                playersLeft = false;
-
                 StatusImage.sprite = StatusImages[2];
+                return false;
+            }
+            return true;
+        }
+
+        public void Die()
+        {
+            Alive = false;
+            StatusImage.sprite = StatusImages[2];
+            Health = 0;
+            HealthImage.fillAmount = 0;
+
+            bool playersLeft = CheckForGameOver();
+            MoveToNextPlayer(playersLeft);
+
+            foreach (var bc in GetComponentsInChildren<BoxCollider2D>())
+            {
+                bc.isTrigger = true;
+            }
+            Active = false;
+
+            var beamUp = GameObject.Find("beamUp" + name);
+            if (beamUp)
+            {
+                beamUp.GetComponent<Animator>().SetTrigger("Stop");
+                beamUp.name += "COMPLETE";
             }
 
+            if (FraserScript)
+                FraserScript.Die();
+        }
+
+        private void MoveToNextPlayer(bool playersLeft)
+        {
             if (playersLeft)
             {
                 if (Active)
@@ -426,22 +450,7 @@ namespace Assets.Scripts
                 }
                 Controller.CameraScript.ChangePlayer(Controller.Players[Controller.SelectedPlayer]);
             }
-            StatusImage.sprite = StatusImages[2];
-            foreach (var bc in GetComponentsInChildren<BoxCollider2D>())
-            {
-                bc.isTrigger = true;
-            }
-            Active = false;
 
-            var beamUp = GameObject.Find("beamUp" + name);
-            if (beamUp)
-            {
-                beamUp.GetComponent<Animator>().SetTrigger("Stop");
-                beamUp.name += "COMPLETE";
-            }
-
-            if (FraserScript)
-                FraserScript.Die();
         }
 
         void OnCollisionEnter2D(Collision2D collision)

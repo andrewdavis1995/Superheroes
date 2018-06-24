@@ -25,7 +25,7 @@ namespace Assets.Scripts
             BricksImage.gameObject.SetActive(false);
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.E) && !Building && Player.Active && _inBuildZone)

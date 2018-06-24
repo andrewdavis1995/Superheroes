@@ -16,13 +16,13 @@ namespace Assets.Scripts
 
         public float Speed = 1;
 
-        // Use this for initialization
+        
         void Start()
         {
             _renderer = GetComponent<SpriteRenderer>();
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (Enemy.Punching) return;

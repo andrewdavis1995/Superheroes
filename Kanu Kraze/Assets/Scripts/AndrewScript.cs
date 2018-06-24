@@ -10,7 +10,7 @@ namespace Assets.Scripts
         public SpriteRenderer Hacker;
         public bool Hacking { get; private set; }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.H))

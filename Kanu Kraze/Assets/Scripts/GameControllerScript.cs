@@ -16,7 +16,6 @@ namespace Assets.Scripts
         public GameObject LevelCompletePopup;
         public GameObject LevelFailedPopup;
 
-        // Use this for initialization
         void Start()
         {
             SelectedPlayer = 0;
@@ -32,7 +31,6 @@ namespace Assets.Scripts
             }
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (!CameraScript.IsTransitioning())

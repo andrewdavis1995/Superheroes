@@ -15,7 +15,7 @@ namespace Assets.Scripts
 
         private readonly float _transitionDuration = 1.2f;
 
-        // Use this for initialization
+        
         void Start()
         {
             StartCoroutine(Transition());

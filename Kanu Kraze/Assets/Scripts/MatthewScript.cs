@@ -16,7 +16,7 @@ namespace Assets.Scripts
         public Transform Potion;
         public Sprite[] PotionImages;
         
-        // Update is called once per frame
+        
         void Update()
         {
             if (!PlayerScript.Alive) return;

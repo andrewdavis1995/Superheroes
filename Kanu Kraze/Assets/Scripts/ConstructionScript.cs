@@ -19,7 +19,7 @@ namespace Assets.Scripts
         public GameObject[] JumpStoppers;
         public RequiredIconFlickerScript FlickerIcon;
 
-        // Use this for initialization
+        
         void Start()
         {
             var fraser = GameObject.Find("Fraser");

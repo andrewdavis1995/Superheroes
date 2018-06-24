@@ -9,7 +9,7 @@ namespace Assets.Scripts
         public PlayerScript Player { get; internal set; }
         public int HealthBenefits;
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (!Player) return;

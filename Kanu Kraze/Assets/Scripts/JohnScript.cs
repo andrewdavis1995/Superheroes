@@ -30,7 +30,6 @@ namespace Assets.Scripts
             InWallBounds = false;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (!Player.Active) return;

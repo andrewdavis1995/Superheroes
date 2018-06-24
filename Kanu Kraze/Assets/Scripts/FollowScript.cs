@@ -15,10 +15,10 @@ namespace Assets.Scripts
         private float _interval = 2.5f;
         private float _boundaries = 2.5f;
 
-        // Use this for initialization
+        
         void Start()
         {
-            _player = GetComponent<PlayerScript>();
+            _player = gameObject.GetComponent<PlayerScript>();
         }
 
         public void SetTarget(PlayerScript target)
@@ -26,9 +26,16 @@ namespace Assets.Scripts
             _target = target;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
+            // disable following if dead
+            if ((!_player.Alive))
+            {
+                enabled = false;
+                return;
+            }
+
             // don't follow if dead
             if (_target == null || !_target.Alive)
                 return;

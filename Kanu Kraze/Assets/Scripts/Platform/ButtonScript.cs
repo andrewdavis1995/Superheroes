@@ -19,7 +19,7 @@ namespace Assets.Scripts.Platform
             Pressed = false;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (ZoomAdjust != CameraState.Inactive)

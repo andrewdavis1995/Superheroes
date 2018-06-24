@@ -14,14 +14,14 @@ namespace Assets.Scripts
         public Camera Camera;
         public static bool Zooming { get; set; }
 
-        // Use this for initialization
+        
         void Start()
         {
             Zooming = false;
             _ship = GameObject.Find("Ship").transform;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (!_transitioning && _target && _target.Alive)

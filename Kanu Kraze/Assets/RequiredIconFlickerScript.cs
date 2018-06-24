@@ -7,13 +7,13 @@ namespace Assets
         private bool _increasing = false;
         private SpriteRenderer _renderer;
 
-        // Use this for initialization
+        
         void Start()
         {
             _renderer = GetComponent<SpriteRenderer>();
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (_increasing)

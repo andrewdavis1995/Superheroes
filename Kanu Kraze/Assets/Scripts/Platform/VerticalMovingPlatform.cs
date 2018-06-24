@@ -9,7 +9,7 @@ namespace Assets.Scripts.Platform
 
         bool MovingUp = true;
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (Active)
