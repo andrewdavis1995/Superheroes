@@ -54,7 +54,7 @@ namespace Assets.Scripts
 
             LoadingPlanet.sprite = Planets[i];
             LoadScreen.SetActive(true);
-            SceneManager.LoadScene(offset + i);
+            SceneManager.LoadScene(offset + i + 1);
         }
     }
 }
